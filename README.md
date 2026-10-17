@@ -2,6 +2,8 @@
 
 A 3D interactive web application that simulates 24-hour satellite communication between a user-configured Beacon and the Iridium satellite constellation. This version includes significant improvements to visualization accuracy, data representation, and overall stability.
 
+<img src="public\textures\sat.png" alt="Project Demo" width="500">
+
 ## Key Features (Version 3)
 
 - **Accurate Orbital Plane Visualization**: Satellites are now correctly displayed in their 6 distinct orbital planes with proper RAAN separation (31.6°), inclination, and realistic intra-plane staggering.
