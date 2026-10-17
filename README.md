@@ -30,7 +30,7 @@ A 3D interactive web application that simulates 24-hour satellite communication 
 
 1. Clone the repository:
    ```bash
-   git clone [repository-url] # Replace [repository-url] with your actual repository URL
+   git clone https://github.com/tzhe0700/iridium-satellite.git 
    cd satellite-communication-simulator
    ```
 
