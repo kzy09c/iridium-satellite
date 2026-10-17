@@ -1,0 +1,680 @@
+/* Main application styles */
+
+:root {
+  --primary-color: #3366cc;
+  --secondary-color: #ff9900;
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+  --panel-bg: #2a2a2a;
+  --border-color: #333333;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+/* App container */
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* Header */
+.app-header {
+  padding: 20px;
+  text-align: center;
+  background: #1a1a1a;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 2em;
+  color: #ffffff;
+}
+
+.app-header p {
+  margin: 10px 0 0;
+  color: #cccccc;
+}
+
+/* Main content */
+.app-content {
+  flex: 1;
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1800px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 1200px) {
+  .app-content {
+    flex-direction: column;
+  }
+  
+  .left-panel {
+    flex: none;
+    width: 100%;
+  }
+  
+  .right-panel {
+    width: 100%;
+  }
+  
+  .viewer-container {
+    height: 500px;
+  }
+}
+
+/* Left panel with form */
+.left-panel {
+  flex: 0 0 400px;
+  background-color: var(--panel-bg);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+/* Right panel with viewer and results */
+.right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0; /* Prevent flex item from overflowing */
+}
+
+/* Orbit Viewer */
+.viewer-container {
+  position: relative;
+  height: 600px;
+  background: #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.orbit-viewer {
+  width: 100%;
+  height: 100%;
+}
+
+.orbit-viewer-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #888;
+  font-style: italic;
+}
+
+/* Timeline controls */
+.timeline-controls {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.control-button {
+  padding: 8px 16px;
+  background: #333;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  height: 36px;
+  display: flex;
+  align-items: center;
+}
+
+.control-button:hover {
+  background: #444;
+}
+
+.time-slider-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0;
+  height: 36px;
+  justify-content: center;
+}
+
+.time-slider {
+  width: 100%;
+  height: 36px;
+  -webkit-appearance: none;
+  background: #333;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.time-slider:hover {
+  background: #444;
+}
+
+.time-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 36px;
+  height: 36px;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.time-slider::-webkit-slider-thumb:hover {
+  background: #f0f0f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1);
+}
+
+.time-slider::-moz-range-thumb {
+  width: 36px;
+  height: 36px;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.time-slider::-moz-range-thumb:hover {
+  background: #f0f0f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transform: scale(1.1);
+}
+
+.time-slider::-moz-range-track {
+  height: 36px;
+  background: #333;
+  border-radius: 4px;
+}
+
+.time-display {
+  position: absolute;
+  bottom: 45px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.multiplier-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #ccc;
+}
+
+.multiplier-control select {
+  padding: 4px 8px;
+  background: #333;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Results panel */
+.results-container {
+  background: #1a1a1a;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.results-panel.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #888;
+  font-style: italic;
+}
+
+/* Form styling */
+.orbit-form h2 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+}
+
+.form-section {
+  margin-bottom: 20px;
+}
+
+.form-section h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.form-group {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(51, 102, 204, 0.2);
+  background-color: rgba(51, 102, 204, 0.03);
+}
+
+.form-group input:hover,
+.form-group select:hover {
+  border-color: #aaa;
+}
+
+.form-group input:focus + .focus-indicator {
+  opacity: 1;
+}
+
+/* Add optional focus indicator for more modern look */
+.form-group .focus-indicator {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background-color: var(--primary-color);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* Style for number inputs to make them more user-friendly */
+.form-group input[type="text"],
+.form-group input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+/* Remove spinners from number inputs */
+.form-group input[type="number"]::-webkit-outer-spin-button,
+.form-group input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Add a bit of styling for better readability */
+.form-group .info-text {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+  font-style: italic;
+}
+
+/* Improve checkbox styling */
+.form-group input[type="checkbox"] {
+  width: auto;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+/* Enable smooth transitions for all interactive elements */
+button, 
+input, 
+select, 
+.control-button,
+.time-slider::-webkit-slider-thumb,
+.time-slider::-moz-range-thumb {
+  transition: all 0.2s ease;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #2851a3;
+}
+
+button:disabled {
+  background-color: #b3c3e0;
+  cursor: not-allowed;
+}
+
+/* Results styling */
+.results-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.result-item {
+  background-color: var(--panel-bg);
+  border-radius: 4px;
+  padding: 15px;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.result-item h3 {
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: #cccccc;
+}
+
+.result-value {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.result-percentage {
+  font-size: 14px;
+  color: #cccccc;
+}
+
+.initial-positions {
+  margin-bottom: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.position-item {
+  flex: 1;
+  background-color: var(--panel-bg);
+  border-radius: 4px;
+  padding: 15px;
+  color: var(--text-color);
+}
+
+.position-item h4 {
+  color: #cccccc;
+  margin-bottom: 8px;
+}
+
+/* Timeline plot */
+.timeline-plot {
+  margin-top: 15px;
+}
+
+.timeline-legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+}
+
+.color-box {
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  border-radius: 2px;
+}
+
+.color-box.contact {
+  background-color: #4CAF50;
+}
+
+.color-box.no-contact {
+  background-color: #f0f0f0;
+}
+
+/* Time-series charts and tables */
+.time-series-container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.time-series-container h3,
+.time-series-table h3 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-color);
+}
+
+.chart-wrapper {
+  background-color: var(--panel-bg);
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.time-series-table {
+  margin-top: 30px;
+}
+
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  color: var(--text-color);
+}
+
+.summary-table th,
+.summary-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.summary-table th {
+  background-color: var(--panel-bg);
+  font-weight: 600;
+  color: #cccccc;
+}
+
+.summary-table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.summary-table tr:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Error message */
+.error-message {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(255, 59, 48, 0.1);
+  border: 1px solid rgba(255, 59, 48, 0.3);
+  border-radius: 8px;
+  color: #ff3b30;
+}
+
+.error-message h3 {
+  margin: 0 0 10px;
+  color: #ff3b30;
+}
+
+.error-message p {
+  margin: 0;
+}
+
+/* Footer */
+.app-footer {
+  padding: 20px;
+  text-align: center;
+  background: #1a1a1a;
+  color: #666;
+}
+
+/* Timeline Scroll Bar */
+.timeline-scroll-container {
+  width: 100%;
+  padding: 20px;
+  position: relative;
+  user-select: none;
+}
+
+.timeline-current-time {
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  z-index: 2;
+  transition: all 0.1s ease-out;
+  pointer-events: none;
+}
+
+.timeline-scroll-bar {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  background: #1a1a1a;
+  border-radius: 6px;
+  cursor: pointer;
+  overflow: hidden;
+  touch-action: none;
+}
+
+.timeline-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #2a2a2a;
+}
+
+.timeline-hour-marker {
+  position: absolute;
+  height: 100%;
+  width: 2px;
+  pointer-events: none;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+}
+
+.timeline-scroll-bar:hover .timeline-hour-marker {
+  opacity: 0.8;
+}
+
+.marker-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.marker-label {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  transition: color 0.2s ease;
+}
+
+.timeline-scroll-bar:hover .marker-label {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.timeline-handle {
+  position: absolute;
+  top: 0;
+  width: 8px;
+  height: 100%;
+  background: #4CAF50;
+  cursor: grab;
+  transition: all 0.1s ease-out;
+  will-change: transform, width;
+}
+
+.timeline-handle:hover,
+.timeline-handle:active {
+  width: 12px;
+  background: #5CBA5C;
+}
+
+.timeline-handle:active {
+  cursor: grabbing;
+}
+
+.handle-grip {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4px;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 2px;
+  transition: all 0.1s ease-out;
+}
+
+.timeline-handle:hover .handle-grip {
+  background: white;
+  height: 24px;
+}
+
+.timeline-handle:active .handle-grip {
+  height: 28px;
+} 

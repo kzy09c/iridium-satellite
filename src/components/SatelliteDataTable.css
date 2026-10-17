@@ -1,0 +1,149 @@
+.satellite-data-table-container {
+  margin: 40px 0;
+  padding: 20px;
+  background: #1a1a1a;
+  border-radius: 8px;
+}
+
+.satellite-data-table-container h2 {
+  margin-bottom: 20px;
+  color: #ffffff;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 0 -20px;
+  padding: 0 20px;
+  scrollbar-width: thin;
+  scrollbar-color: #666 #333;
+}
+
+.table-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: #333;
+  border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 4px;
+}
+
+.satellite-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #2a2a2a;
+  border-radius: 6px;
+  overflow: hidden;
+  min-width: 1200px; /* Ensure table doesn't get too cramped */
+}
+
+.satellite-data-table th,
+.satellite-data-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #333;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.satellite-data-table td {
+  font-variant-numeric: tabular-nums;
+}
+
+.satellite-data-table th {
+  background: #333;
+  font-weight: 600;
+  color: #ffffff;
+  position: relative;
+  user-select: none;
+}
+
+.header-with-tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: help;
+}
+
+.header-with-tooltip:after {
+  content: "ⓘ";
+  margin-left: 5px;
+  font-size: 14px;
+  color: #666;
+}
+
+.header-with-tooltip .tooltip {
+  visibility: hidden;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(100% + 10px);
+  width: 300px;
+  background: #444;
+  color: #fff;
+  text-align: left;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.4;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.2s, visibility 0.2s;
+  pointer-events: none;
+}
+
+.header-with-tooltip .tooltip:after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #444 transparent transparent transparent;
+}
+
+.header-with-tooltip:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.satellite-data-table tbody tr:hover {
+  background: #333;
+}
+
+.satellite-data-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.status-indicator {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.status-indicator.available {
+  color: #4cd964;
+}
+
+.status-indicator.unavailable {
+  color: #ff3b30;
+}
+
+.satellite-table-loading,
+.satellite-table-error {
+  padding: 20px;
+  text-align: center;
+  background: #1a1a1a;
+  border-radius: 8px;
+  color: #ffffff;
+}
+
+.satellite-table-error {
+  color: #ff3b30;
+} 
